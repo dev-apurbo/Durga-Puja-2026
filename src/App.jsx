@@ -1,4 +1,5 @@
 import React from 'react';
+import CountdownTimer from './CountdownTimer';
 
 const DurgaPuja2026 = () => {
   const scheduleData = [
@@ -42,6 +43,8 @@ const DurgaPuja2026 = () => {
         <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-md">শারদীয় দুর্গোৎসব ২০২৬</h1>
         <p className="text-xl md:text-2xl font-light">ইতিহাস, মাহাত্ম্য এবং পূর্ণাঙ্গ সময়সূচী</p>
       </header>
+
+      <CountdownTimer />
 
       <main className="max-w-6xl mx-auto px-6 mt-10 space-y-12">
         
