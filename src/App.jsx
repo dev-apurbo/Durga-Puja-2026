@@ -47,7 +47,7 @@ const DurgaPuja2026 = () => {
       <CountdownTimer />
 
       <main className="max-w-6xl mx-auto px-6 mt-10 space-y-12">
-        
+
         {/* History and Significance Grid */}
         <div className="grid md:grid-cols-2 gap-8">
           <section className="bg-white p-8 rounded-2xl shadow-md border-t-4 border-orange-500 hover:shadow-lg transition-shadow">
@@ -65,11 +65,11 @@ const DurgaPuja2026 = () => {
             <p className="text-lg leading-relaxed text-gray-700 text-justify mb-6">
               শরতের কাশফুল, শিউলি আর ঢাকের বাদ্যি মানুষের মনে যে আনন্দের সঞ্চার করে, তা সব ভেদাভেদ ভুলিয়ে সমাজে সম্প্রীতি ও মিলনের বার্তা বয়ে আনে। বিজয়া দশমীর কোলাকুলি ও মিষ্টিমুখ সমাজের সকল স্তরের মানুষকে এক সুতোয় গাঁথে।
             </p>
-            <button 
+            <button
               onClick={() => setShowSandhiPuja(!showSandhiPuja)}
               className="bg-red-700 text-white px-6 py-2 rounded-full font-semibold hover:bg-red-800 transition-colors shadow-md flex items-center gap-2"
             >
-              {showSandhiPuja ? 'বন্ধ করুন' : 'সন্ধিপূজার মাহাত্ম্য জানুন'} 
+              {showSandhiPuja ? 'বন্ধ করুন' : 'সন্ধিপূজার মাহাত্ম্য জানুন'}
               <span>{showSandhiPuja ? '↑' : '↓'}</span>
             </button>
           </section>
@@ -128,7 +128,7 @@ const DurgaPuja2026 = () => {
 
         {/* Devotee Duties Section (Toggleable) */}
         <section className="text-center">
-          <button 
+          <button
             onClick={() => setShowDevoteeDuties(!showDevoteeDuties)}
             className="bg-orange-600 text-white px-8 py-3 rounded-full font-bold hover:bg-orange-700 transition-all shadow-lg flex items-center gap-2 mx-auto text-lg"
           >
@@ -143,7 +143,7 @@ const DurgaPuja2026 = () => {
             <p className="text-lg text-gray-700 mb-8 text-center leading-relaxed max-w-3xl mx-auto">
               দুর্গাপূজা শুধু একটি উৎসব নয়, এটি ভক্তদের জন্য আত্মশুদ্ধি এবং দেবী শক্তির আরাধনার এক বিশেষ সময়। এই সময়ে ভক্তদের বেশ কিছু আধ্যাত্মিক, ধর্মীয় এবং সামাজিক করণীয় থাকে।
             </p>
-            
+
             <div className="grid md:grid-cols-2 gap-6">
               {[
                 { title: "পুষ্পাঞ্জলি প্রদান", desc: "পূজার অন্যতম প্রধান অঙ্গ হলো দেবীকে পুষ্পাঞ্জলি নিবেদন করা। বিশেষ করে মহাষ্টমীর দিন সকালে স্নান সেরে, শুদ্ধ বস্ত্রে (বা নতুন পোশাকে) দেবীর চরণে অঞ্জলি দেওয়া হয়। অঞ্জলি দেওয়ার আগে পর্যন্ত ভক্তরা সাধারণত উপবাস পালন করেন।" },
@@ -161,7 +161,7 @@ const DurgaPuja2026 = () => {
                 </div>
               ))}
             </div>
-            
+
             <p className="mt-10 text-xl font-bold text-red-800 text-center italic bg-orange-50 py-6 rounded-2xl border-2 border-dashed border-orange-200">
               সবশেষে, পূজায় জাঁকজমক বা আড়ম্বরের চেয়েও বেশি গুরুত্বপূর্ণ হলো <span className="text-red-600 underline">আন্তরিক ভক্তি ও নিষ্ঠা</span>। শুদ্ধ মনে প্রার্থনা করাই একজন ভক্তের সবচেয়ে বড় করণীয়।
             </p>
