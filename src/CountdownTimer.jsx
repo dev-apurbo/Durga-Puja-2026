@@ -76,4 +76,4 @@ const CountdownTimer = () => {
     );
 };
 
-export default CountdownTimer;
+export default CountdownTimer;
