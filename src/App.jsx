@@ -1,16 +1,8 @@
 import React from 'react';
 import CountdownTimer from './CountdownTimer';
+import PujaSchedule from './PujaSchedule';
 
 const DurgaPuja2026 = () => {
-  const scheduleData = [
-    { day: "শুভ মহালয়া", engDate: "১০ অক্টোবর ২০২৬", bangDate: "২২ আশ্বিন ১৪৩৩", weekDay: "শনিবার" },
-    { day: "মহাপঞ্চমী", engDate: "১৫ অক্টোবর ২০২৬", bangDate: "২৭ আশ্বিন ১৪৩৩", weekDay: "বৃহস্পতিবার" },
-    { day: "মহাষষ্ঠী", engDate: "১৬ অক্টোবর ২০২৬", bangDate: "২৮ আশ্বিন ১৪৩৩", weekDay: "শুক্রবার" },
-    { day: "মহাসপ্তমী", engDate: "১৭ অক্টোবর ২০২৬", bangDate: "২৯ আশ্বিন ১৪৩৩", weekDay: "শনিবার" },
-    { day: "মহাষ্টমী", engDate: "১৯ অক্টোবর ২০২৬", bangDate: "১ কার্তিক ১৪৩৩", weekDay: "সোমবার" },
-    { day: "মহানবমী", engDate: "২০ অক্টোবর ২০২৬", bangDate: "২ কার্তিক ১৪৩৩", weekDay: "মঙ্গলবার" },
-    { day: "বিজয়া দশমী", engDate: "২১ অক্টোবর ২০২৬", bangDate: "৩ কার্তিক ১৪৩৩", weekDay: "বুধবার" },
-  ];
 
   const specialTimings = [
     {
@@ -168,32 +160,8 @@ const DurgaPuja2026 = () => {
           </section>
         )}
 
-        {/* Schedule Table Section */}
-        <section className="bg-white p-8 rounded-2xl shadow-md border-t-4 border-yellow-500">
-          <h2 className="text-3xl font-bold text-red-700 mb-6 text-center">২০২৬ সালের পূজার দিনপঞ্জিকা</h2>
-          <div className="overflow-x-auto rounded-lg border border-red-100">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-red-50 text-red-900 text-lg">
-                  <th className="p-4 border-b-2 border-red-200">পূজার দিন</th>
-                  <th className="p-4 border-b-2 border-red-200">ইংরেজি তারিখ</th>
-                  <th className="p-4 border-b-2 border-red-200">বাংলা তারিখ</th>
-                  <th className="p-4 border-b-2 border-red-200">বার</th>
-                </tr>
-              </thead>
-              <tbody>
-                {scheduleData.map((item, index) => (
-                  <tr key={index} className="hover:bg-orange-50 transition-colors border-b border-gray-100 last:border-0">
-                    <td className="p-4 font-bold text-red-700">{item.day}</td>
-                    <td className="p-4 text-gray-700">{item.engDate}</td>
-                    <td className="p-4 text-gray-700">{item.bangDate}</td>
-                    <td className="p-4 text-gray-700">{item.weekDay}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
+        {/* Schedule Section */}
+        <PujaSchedule />
 
       </main>
     </div>
