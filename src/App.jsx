@@ -32,6 +32,8 @@ const DurgaPuja2026 = () => {
     }
   ];
 
+  const [showSandhiPuja, setShowSandhiPuja] = React.useState(false);
+
   return (
     <div className="min-h-screen bg-orange-50 font-sans text-gray-800 pb-12">
       {/* Hero Section */}
@@ -56,11 +58,53 @@ const DurgaPuja2026 = () => {
             <p className="text-lg leading-relaxed text-gray-700 text-justify mb-4">
               দুর্গাপূজা কেবল একটি ধর্মীয় আচার নয়, এটি অশুভ শক্তির বিনাশ এবং শুভ শক্তির বিজয়ের চিরন্তন প্রতীক। মহিষাসুরমর্দিনী দেবী দুর্গা হলেন মাতৃরূপ, শক্তিরূপ এবং শান্তিরূপ। তাঁর দশ হাতে দশ প্রহরণ প্রমাণ করে <strong>নারী শক্তির অসীম ক্ষমতা</strong> এবং অন্যায়ের বিরুদ্ধে প্রতিবাদ।
             </p>
-            <p className="text-lg leading-relaxed text-gray-700 text-justify">
+            <p className="text-lg leading-relaxed text-gray-700 text-justify mb-6">
               শরতের কাশফুল, শিউলি আর ঢাকের বাদ্যি মানুষের মনে যে আনন্দের সঞ্চার করে, তা সব ভেদাভেদ ভুলিয়ে সমাজে সম্প্রীতি ও মিলনের বার্তা বয়ে আনে। বিজয়া দশমীর কোলাকুলি ও মিষ্টিমুখ সমাজের সকল স্তরের মানুষকে এক সুতোয় গাঁথে।
             </p>
+            <button 
+              onClick={() => setShowSandhiPuja(!showSandhiPuja)}
+              className="bg-red-700 text-white px-6 py-2 rounded-full font-semibold hover:bg-red-800 transition-colors shadow-md flex items-center gap-2"
+            >
+              {showSandhiPuja ? 'বন্ধ করুন' : 'সন্ধিপূজার মাহাত্ম্য জানুন'} 
+              <span>{showSandhiPuja ? '↑' : '↓'}</span>
+            </button>
           </section>
         </div>
+
+        {/* Sandhi Puja Section (Collapsible) */}
+        {showSandhiPuja && (
+          <section className="bg-orange-100 p-8 rounded-2xl shadow-md border-l-8 border-red-700 animate-fadeIn">
+            <h3 className="text-2xl font-bold text-red-800 mb-6 border-b border-orange-200 pb-2">সন্ধিপূজার মাহাত্ম্য</h3>
+            <p className="text-lg text-gray-800 mb-6 leading-relaxed text-justify">
+              দুর্গাপূজায় <strong>সন্ধিপূজা</strong> বা সন্ধিক্ষণের মাহাত্ম্য অপরিসীম। এটি পুরো দুর্গাপূজার সবচেয়ে গুরুত্বপূর্ণ, পবিত্র এবং শক্তিপূর্ণ মুহূর্ত হিসেবে বিবেচিত হয়। এর প্রধান তাৎপর্যগুলো নিচে তুলে ধরা হলো:
+            </p>
+            <ul className="space-y-4 text-lg text-gray-700">
+              <li className="flex gap-3">
+                <span className="text-red-700 font-bold">•</span>
+                <p><strong>পূজার সময়কাল (সন্ধিক্ষণ):</strong> মহাষ্টমী তিথির শেষ ২৪ মিনিট এবং মহানবমী তিথির প্রথম ২৪ মিনিট—সব মিলিয়ে মোট ৪৮ মিনিট সময়কে ‘সন্ধিক্ষণ’ বলা হয়। অষ্টমীর সমাপ্তি এবং নবমীর সূচনার ঠিক এই সংযোগস্থলেই সন্ধিপূজা অনুষ্ঠিত হয়।</p>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-red-700 font-bold">•</span>
+                <p><strong>চামুণ্ডা রূপে আরাধনা:</strong> পৌরাণিক কাহিনী বা মার্কণ্ডেয় পুরাণ অনুসারে, ঠিক এই সন্ধিক্ষণেই দেবী দুর্গার ত্রিনয়ন থেকে তাঁর সবচেয়ে ভয়ংকর এবং উগ্র রূপ <strong>'চামুণ্ডা'</strong>-এর আবির্ভাব ঘটেছিল। এই রূপেই তিনি চণ্ড ও মুণ্ড নামক দুই প্রবল পরাক্রমশালী অসুরকে বধ করেন। তাই সন্ধিপূজায় দেবীকে দুর্গা নয়, বরং চামুণ্ডা রূপে আরাধনা করা হয়।</p>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-red-700 font-bold">•</span>
+                <p><strong>১০৮ প্রদীপ ও ১০৮ পদ্ম:</strong> সন্ধিপূজার অন্যতম প্রধান অনুষঙ্গ হলো ১০৮টি মাটির প্রদীপ প্রজ্জ্বলন এবং দেবীর চরণে ১০৮টি তাজা পদ্মফুল নিবেদন। প্রদীপের এই আলো অজ্ঞতা ও অন্ধকারের বিনাশ ঘটিয়ে জ্ঞানের আলো ছড়িয়ে দেওয়ার প্রতীক।</p>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-red-700 font-bold">•</span>
+                <p><strong>অশুভ শক্তির বিনাশ:</strong> এই ক্ষণটি চরম অশুভ শক্তির বিরুদ্ধে পরম শুভ শক্তির চূড়ান্ত বিজয়ের প্রতীক। হিন্দু ধর্মাবলম্বীরা বিশ্বাস করেন, এই সময়ে দেবী অত্যন্ত জাগ্রত অবস্থায় থাকেন এবং একনিষ্ঠ ভক্তিতে প্রার্থনা করলে তিনি ভক্তের কল্যাণ করেন।</p>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-red-700 font-bold">•</span>
+                <p><strong>বলিদান প্রথা:</strong> দেবী চামুণ্ডাকে সন্তুষ্ট করতে প্রাচীনকাল থেকেই সন্ধিপূজার সময় বলিদানের প্রথা প্রচলিত রয়েছে। তবে বর্তমানে বেশিরভাগ মণ্ডপেই পশুবলির বদলে চালকুমড়া, শসা বা কলা বলির মাধ্যমে এই প্রথাটি প্রতীকীভাবে পালন করা হয়।</p>
+              </li>
+            </ul>
+            <p className="mt-8 text-lg font-semibold text-red-800 text-center italic bg-white/50 py-4 rounded-xl">
+              সংক্ষেপে, সন্ধিপূজা হলো দেবী দুর্গার শক্তির সর্বোচ্চ বিকাশ এবং অশুভ শক্তির চূড়ান্ত পতনের এক আধ্যাত্মিক উদযাপন।
+            </p>
+          </section>
+        )}
 
         {/* Special Timings Section (New) */}
         <section className="bg-red-50 p-8 rounded-2xl shadow-inner border-l-4 border-r-4 border-red-600">
