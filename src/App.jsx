@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Mail, MapPin, Calendar, Clock, Info, ChevronDown, ChevronUp, Sparkles, Heart } from 'lucide-react';
 import CountdownTimer from './CountdownTimer';
 import PujaSchedule from './PujaSchedule';
+import bgImage from './assets/bg.png';
+import envelopeImage from './assets/envelope.png';
 
 const DurgaPuja2026 = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
+  const [activeTab, setActiveTab] = useState('invitation');
 
   const specialTimings = [
     {
@@ -25,145 +32,267 @@ const DurgaPuja2026 = () => {
     }
   ];
 
-  const [showSandhiPuja, setShowSandhiPuja] = React.useState(false);
-  const [showDevoteeDuties, setShowDevoteeDuties] = React.useState(false);
+  const [showSandhiPuja, setShowSandhiPuja] = useState(false);
+  const [showDevoteeDuties, setShowDevoteeDuties] = useState(false);
 
   return (
-    <div className="min-h-screen bg-orange-50 font-sans text-gray-800 pb-12">
-      {/* Hero Section */}
-      <header className="bg-red-700 text-white py-16 text-center shadow-lg px-4">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 drop-shadow-md">শারদীয় দুর্গোৎসব ২০২৬</h1>
-        <p className="text-xl md:text-2xl font-light">ইতিহাস, মাহাত্ম্য এবং পূর্ণাঙ্গ সময়সূচী</p>
-      </header>
-
-      <CountdownTimer />
-
-      <main className="max-w-6xl mx-auto px-6 mt-10 space-y-12">
-
-        {/* History and Significance Grid */}
-        <div className="grid md:grid-cols-2 gap-8">
-          <section className="bg-white p-8 rounded-2xl shadow-md border-t-4 border-orange-500 hover:shadow-lg transition-shadow">
-            <h2 className="text-3xl font-bold text-red-700 mb-4">দুর্গাপূজার ইতিহাস</h2>
-            <p className="text-lg leading-relaxed text-gray-700 text-justify">
-              বাঙালি হিন্দু সমাজে দুর্গাপূজার প্রচলন ঠিক কবে শুরু হয়েছিল, তা নিয়ে নানা মতভেদ রয়েছে। তবে কৃত্তিবাস ওঝার রামায়ণে শ্রীরামচন্দ্র রাবণবধের উদ্দেশ্যে শরৎকালে দেবীর যে আরাধনা করেছিলেন, তা <strong>'অকালবোধন'</strong> নামে পরিচিত এবং এটিই শারদীয় দুর্গাপূজার মূল ভিত্তি। ১৫শ শতকের শেষের দিকে বা ১৬শ শতকের শুরুতে রাজশাহীর তাহেরপুরের রাজা কংসনারায়ণ এই পূজাকে বর্তমান রূপ ও জাঁকজমক প্রদান করেন বলে প্রচলিত আছে। ১৭৯০ সালের দিকে হুগলির গুপ্তিপাড়ায় প্রথম <strong>বারোয়ারি বা সর্বজনীন</strong> দুর্গাপূজার প্রচলন ঘটে।
-            </p>
-          </section>
-
-          <section className="bg-white p-8 rounded-2xl shadow-md border-t-4 border-red-500 hover:shadow-lg transition-shadow">
-            <h2 className="text-3xl font-bold text-red-700 mb-4">পূজার মাহাত্ম্য</h2>
-            <p className="text-lg leading-relaxed text-gray-700 text-justify mb-4">
-              দুর্গাপূজা কেবল একটি ধর্মীয় আচার নয়, এটি অশুভ শক্তির বিনাশ এবং শুভ শক্তির বিজয়ের চিরন্তন প্রতীক। মহিষাসুরমর্দিনী দেবী দুর্গা হলেন মাতৃরূপ, শক্তিরূপ এবং শান্তিরূপ। তাঁর দশ হাতে দশ প্রহরণ প্রমাণ করে <strong>নারী শক্তির অসীম ক্ষমতা</strong> এবং অন্যায়ের বিরুদ্ধে প্রতিবাদ।
-            </p>
-            <p className="text-lg leading-relaxed text-gray-700 text-justify mb-6">
-              শরতের কাশফুল, শিউলি আর ঢাকের বাদ্যি মানুষের মনে যে আনন্দের সঞ্চার করে, তা সব ভেদাভেদ ভুলিয়ে সমাজে সম্প্রীতি ও মিলনের বার্তা বয়ে আনে। বিজয়া দশমীর কোলাকুলি ও মিষ্টিমুখ সমাজের সকল স্তরের মানুষকে এক সুতোয় গাঁথে।
-            </p>
-            <button
-              onClick={() => setShowSandhiPuja(!showSandhiPuja)}
-              className="bg-red-700 text-white px-6 py-2 rounded-full font-semibold hover:bg-red-800 transition-colors shadow-md flex items-center gap-2"
-            >
-              {showSandhiPuja ? 'বন্ধ করুন' : 'সন্ধিপূজার মাহাত্ম্য জানুন'}
-              <span>{showSandhiPuja ? '↑' : '↓'}</span>
-            </button>
-          </section>
-        </div>
-
-        {/* Sandhi Puja Section (Collapsible) */}
-        {showSandhiPuja && (
-          <section className="bg-orange-100 p-8 rounded-2xl shadow-md border-l-8 border-red-700 animate-fadeIn">
-            <h3 className="text-2xl font-bold text-red-800 mb-6 border-b border-orange-200 pb-2">সন্ধিপূজার মাহাত্ম্য</h3>
-            <p className="text-lg text-gray-800 mb-6 leading-relaxed text-justify">
-              দুর্গাপূজায় <strong>সন্ধিপূজা</strong> বা সন্ধিক্ষণের মাহাত্ম্য অপরিসীম। এটি পুরো দুর্গাপূজার সবচেয়ে গুরুত্বপূর্ণ, পবিত্র এবং শক্তিপূর্ণ মুহূর্ত হিসেবে বিবেচিত হয়। এর প্রধান তাৎপর্যগুলো নিচে তুলে ধরা হলো:
-            </p>
-            <ul className="space-y-4 text-lg text-gray-700">
-              <li className="flex gap-3">
-                <span className="text-red-700 font-bold">•</span>
-                <p><strong>পূজার সময়কাল (সন্ধিক্ষণ):</strong> মহাষ্টমী তিথির শেষ ২৪ মিনিট এবং মহানবমী তিথির প্রথম ২৪ মিনিট—সব মিলিয়ে মোট ৪৮ মিনিট সময়কে ‘সন্ধিক্ষণ’ বলা হয়। অষ্টমীর সমাপ্তি এবং নবমীর সূচনার ঠিক এই সংযোগস্থলেই সন্ধিপূজা অনুষ্ঠিত হয়।</p>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-red-700 font-bold">•</span>
-                <p><strong>চামুণ্ডা রূপে আরাধনা:</strong> পৌরাণিক কাহিনী বা মার্কণ্ডেয় পুরাণ অনুসারে, ঠিক এই সন্ধিক্ষণেই দেবী দুর্গার ত্রিনয়ন থেকে তাঁর সবচেয়ে ভয়ংকর এবং উগ্র রূপ <strong>'চামুণ্ডা'</strong>-এর আবির্ভাব ঘটেছিল। এই রূপেই তিনি চণ্ড ও মুণ্ড নামক দুই প্রবল পরাক্রমশালী অসুরকে বধ করেন। তাই সন্ধিপূজায় দেবীকে দুর্গা নয়, বরং চামুণ্ডা রূপে আরাধনা করা হয়।</p>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-red-700 font-bold">•</span>
-                <p><strong>১০৮ প্রদীপ ও ১০৮ পদ্ম:</strong> সন্ধিপূজার অন্যতম প্রধান অনুষঙ্গ হলো ১০৮টি মাটির প্রদীপ প্রজ্জ্বলন এবং দেবীর চরণে ১০৮টি তাজা পদ্মফুল নিবেদন। প্রদীপের এই আলো অজ্ঞতা ও অন্ধকারের বিনাশ ঘটিয়ে জ্ঞানের আলো ছড়িয়ে দেওয়ার প্রতীক।</p>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-red-700 font-bold">•</span>
-                <p><strong>অশুভ শক্তির বিনাশ:</strong> এই ক্ষণটি চরম অশুভ শক্তির বিরুদ্ধে পরম শুভ শক্তির চূড়ান্ত বিজয়ের প্রতীক। হিন্দু ধর্মাবলম্বীরা বিশ্বাস করেন, এই সময়ে দেবী অত্যন্ত জাগ্রত অবস্থায় থাকেন এবং একনিষ্ঠ ভক্তিতে প্রার্থনা করলে তিনি ভক্তের কল্যাণ করেন।</p>
-              </li>
-              <li className="flex gap-3">
-                <span className="text-red-700 font-bold">•</span>
-                <p><strong>বলিদান প্রথা:</strong> দেবী চামুণ্ডাকে সন্তুষ্ট করতে প্রাচীনকাল থেকেই সন্ধিপূজার সময় বলিদানের প্রথা প্রচলিত রয়েছে। তবে বর্তমানে বেশিরভাগ মণ্ডপেই পশুবলির বদলে চালকুমড়া, শসা বা কলা বলির মাধ্যমে এই প্রথাটি প্রতীকীভাবে পালন করা হয়।</p>
-              </li>
-            </ul>
-            <p className="mt-8 text-lg font-semibold text-red-800 text-center italic bg-white/50 py-4 rounded-xl">
-              সংক্ষেপে, সন্ধিপূজা হলো দেবী দুর্গার শক্তির সর্বোচ্চ বিকাশ এবং অশুভ শক্তির চূড়ান্ত পতনের এক আধ্যাত্মিক উদযাপন।
-            </p>
-          </section>
-        )}
-
-        {/* Special Timings Section (New) */}
-        <section className="bg-red-50 p-8 rounded-2xl shadow-inner border-l-4 border-r-4 border-red-600">
-          <h2 className="text-3xl font-bold text-red-800 mb-8 text-center">বিশেষ পূজার লগ্ন (বাংলাদেশ সময়)</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {specialTimings.map((timing, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300">
-                <div className="text-4xl mb-4 text-center">{timing.icon}</div>
-                <h3 className="text-xl font-bold text-red-700 mb-2 text-center">{timing.title}</h3>
-                <p className="text-md font-semibold text-orange-600 mb-3 text-center">{timing.time}</p>
-                <p className="text-gray-600 text-sm leading-relaxed text-justify">{timing.description}</p>
-              </div>
-            ))}
-          </div>
-          <p className="text-xs text-gray-400 mt-6 text-center">* পঞ্জিকার তিথি অনুযায়ী লগ্ন হিসাব করা হয়েছে। স্থানীয়ভাবে কয়েক মিনিটের সামান্য তারতম্য হতে পারে।</p>
-        </section>
-
-        {/* Devotee Duties Section (Toggleable) */}
-        <section className="text-center">
-          <button
-            onClick={() => setShowDevoteeDuties(!showDevoteeDuties)}
-            className="bg-orange-600 text-white px-8 py-3 rounded-full font-bold hover:bg-orange-700 transition-all shadow-lg flex items-center gap-2 mx-auto text-lg"
+    <div className="min-h-screen bg-[#fffaf5] font-sans text-gray-800 overflow-x-hidden">
+      <AnimatePresence mode="wait">
+        {!isOpen ? (
+          <motion.div
+            key="envelope"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.1, transition: { duration: 0.8 } }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-[#8B0000] p-4 cursor-pointer"
+            onClick={() => setIsOpen(true)}
           >
-            🙏 ভক্তদের করণীয় ও আধ্যাত্মিক বিধি
-            <span>{showDevoteeDuties ? '↑' : '↓'}</span>
-          </button>
-        </section>
-
-        {showDevoteeDuties && (
-          <section className="bg-white p-8 rounded-2xl shadow-md border-t-4 border-orange-600 animate-fadeIn">
-            <h2 className="text-3xl font-bold text-red-700 mb-6 text-center">ভক্তদের প্রধান করণীয়</h2>
-            <p className="text-lg text-gray-700 mb-8 text-center leading-relaxed max-w-3xl mx-auto">
-              দুর্গাপূজা শুধু একটি উৎসব নয়, এটি ভক্তদের জন্য আত্মশুদ্ধি এবং দেবী শক্তির আরাধনার এক বিশেষ সময়। এই সময়ে ভক্তদের বেশ কিছু আধ্যাত্মিক, ধর্মীয় এবং সামাজিক করণীয় থাকে।
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {[
-                { title: "পুষ্পাঞ্জলি প্রদান", desc: "পূজার অন্যতম প্রধান অঙ্গ হলো দেবীকে পুষ্পাঞ্জলি নিবেদন করা। বিশেষ করে মহাষ্টমীর দিন সকালে স্নান সেরে, শুদ্ধ বস্ত্রে (বা নতুন পোশাকে) দেবীর চরণে অঞ্জলি দেওয়া হয়। অঞ্জলি দেওয়ার আগে পর্যন্ত ভক্তরা সাধারণত উপবাস পালন করেন।" },
-                { title: "শারীরিক ও মানসিক শুদ্ধতা", desc: "পূজার দিনগুলোতে কায়মনোবাক্যে শুদ্ধতা বজায় রাখা অত্যন্ত জরুরি। মনে কোনো হিংসা, বিদ্বেষ বা নেতিবাচক চিন্তা না রেখে ভক্তিভাব বজায় রাখতে হয়।" },
-                { title: "সাত্ত্বিক আহার গ্রহণ", desc: "পূজার দিনগুলোতে (বিশেষ করে সপ্তমী, অষ্টমী ও নবমীতে) অনেক ভক্তই আমিষ খাবার বর্জন করে নিরামিষ বা সাত্ত্বিক আহার গ্রহণ করেন। অনেকে এ সময় পেঁয়াজ ও রসুনও পরিহার করেন।" },
-                { title: "আরতি ও সন্ধিপূজা দর্শন", desc: "প্রতিদিন সন্ধ্যায় মণ্ডপে দেবীর আরতি দর্শন করা এবং ধুনুচি নাচে অংশগ্রহণ করা পূজার একটি আনন্দময় অংশ। এছাড়া অষ্টমীর ও নবমীর সন্ধিক্ষণে পবিত্র 'সন্ধিপূজা' দর্শন করা অত্যন্ত পুণ্যজনক বলে মনে করা হয়।" },
-                { title: "চণ্ডীপাঠ ও জপ", desc: "পূজার সময় 'শ্রীশ্রীচণ্ডী' পাঠ করা বা শোনা অত্যন্ত ফলদায়ক। ভক্তরা এই সময় দুর্গা মন্ত্র (যেমন: 'ওঁ দুং দুর্গায়ৈ নমঃ' বা 'সর্বমঙ্গল মঙ্গল্যে...') জপ করে দেবীর কৃপা প্রার্থনা করেন।" },
-                { title: "কুমারী পূজা দর্শন", desc: "অষ্টমীর দিন কুমারী পূজার মাধ্যমে ছোট কন্যা শিশুর মধ্যে দেবীর রূপ আরাধনা করা হয়। এটি দর্শন করা এবং নারীর প্রতি সর্বোচ্চ শ্রদ্ধা জ্ঞাপন করা ভক্তের একটি বিশেষ কর্তব্য।" },
-                { title: "দশমীর আচার ও সিঁদুর খেলা", desc: "বিজয়া দশমীর দিন দেবী প্রতিমা বিসর্জনের আগে বিবাহিত নারীরা দেবীকে সিঁদুর পরিয়ে মিষ্টি মুখ করান এবং একে অপরের সাথে সিঁদুর খেলায় মেতে ওঠেন।" },
-                { title: "সম্প্রীতি ও শুভেচ্ছা বিনিময়", desc: "বিসর্জনের পর শুরু হয় বিজয়ার শুভেচ্ছা বিনিময়। ছোটরা বড়দের প্রণাম করে আশীর্বাদ নেন এবং সমবয়সীরা কোলাকুলি করে 'শুভ বিজয়া' জানান। সকল বিভেদ ভুলে সবার সাথে সম্প্রীতি গড়ে তোলাই এই উৎসবের মূল বার্তা।" }
-              ].map((duty, idx) => (
-                <div key={idx} className="border-l-4 border-orange-200 pl-4 py-2 hover:border-red-600 transition-colors">
-                  <h4 className="text-xl font-bold text-red-700 mb-2">{duty.title}</h4>
-                  <p className="text-gray-600 leading-relaxed text-justify">{duty.desc}</p>
+            <div className="relative w-full max-w-md aspect-[4/3] perspective">
+              {/* Envelope Body */}
+              <div 
+                className="absolute inset-0 bg-cover bg-center rounded-lg shadow-2xl overflow-hidden border-4 border-[#D4AF37]"
+                style={{ backgroundImage: `url(${envelopeImage})` }}
+              >
+                <div className="absolute inset-0 bg-black/20" />
+              </div>
+              
+              {/* Envelope Flap */}
+              <div className="absolute top-0 left-0 w-full h-1/2 bg-[#A52A2A] rounded-t-lg origin-bottom border-b-2 border-black/10 flex items-center justify-center">
+                <div className="w-16 h-16 bg-[#D4AF37] rounded-full flex items-center justify-center shadow-lg border-2 border-[#8B0000] animate-bounce">
+                  <Mail size={32} className="text-[#8B0000]" />
                 </div>
-              ))}
+              </div>
+
+              <div className="absolute bottom-10 left-0 w-full text-center text-white px-4">
+                <p className="text-2xl font-serif italic mb-2">আপনি আমন্ত্রিত</p>
+                <p className="text-sm tracking-widest opacity-80">শারদীয় দুর্গোৎসব ২০২৬</p>
+                <div className="mt-8 px-6 py-2 bg-[#D4AF37] text-[#8B0000] rounded-full font-bold inline-block animate-pulse shadow-lg">
+                  খুলতে ক্লিক করুন
+                </div>
+              </div>
             </div>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="content"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="relative"
+          >
+            {/* Header / Hero Section with Card Feel */}
+            <header className="relative min-h-[80vh] flex flex-col items-center justify-center p-6 text-center overflow-hidden">
+              <div 
+                className="absolute inset-0 z-0 bg-cover bg-center opacity-30"
+                style={{ backgroundImage: `url(${bgImage})` }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-[#8B0000]/10 via-transparent to-[#fffaf5]" />
+              
+              <motion.div
+                initial={{ y: 50, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                className="z-10 bg-white/80 backdrop-blur-md p-10 md:p-16 rounded-3xl shadow-2xl border-4 border-[#D4AF37] max-w-4xl w-full relative"
+              >
+                {/* Decorative Corners */}
+                <div className="absolute top-4 left-4 w-12 h-12 border-t-4 border-l-4 border-[#D4AF37] rounded-tl-xl" />
+                <div className="absolute top-4 right-4 w-12 h-12 border-t-4 border-r-4 border-[#D4AF37] rounded-tr-xl" />
+                <div className="absolute bottom-4 left-4 w-12 h-12 border-b-4 border-l-4 border-[#D4AF37] rounded-bl-xl" />
+                <div className="absolute bottom-4 right-4 w-12 h-12 border-b-4 border-r-4 border-[#D4AF37] rounded-br-xl" />
 
-            <p className="mt-10 text-xl font-bold text-red-800 text-center italic bg-orange-50 py-6 rounded-2xl border-2 border-dashed border-orange-200">
-              সবশেষে, পূজায় জাঁকজমক বা আড়ম্বরের চেয়েও বেশি গুরুত্বপূর্ণ হলো <span className="text-red-600 underline">আন্তরিক ভক্তি ও নিষ্ঠা</span>। শুদ্ধ মনে প্রার্থনা করাই একজন ভক্তের সবচেয়ে বড় করণীয়।
-            </p>
-          </section>
+                <div className="text-[#8B0000] font-script text-4xl md:text-6xl mb-4">স্বাগতম</div>
+                <h1 className="text-4xl md:text-7xl font-bold text-[#8B0000] mb-6 drop-shadow-sm font-display">
+                  শারদীয় দুর্গোৎসব ২০২৬
+                </h1>
+                <div className="w-24 h-1 bg-[#D4AF37] mx-auto mb-8 rounded-full" />
+                
+                <p className="text-xl md:text-2xl text-gray-700 font-medium max-w-2xl mx-auto leading-relaxed mb-10">
+                  "যা দেবী সর্বভূতেষু শক্তিরূপেণ সংস্থিতা।<br/>
+                  নমস্তস্যৈ নমস্তস্যৈ নমস্তস্যৈ নমো নমঃ।।"
+                </p>
+
+                <div className="grid md:grid-cols-2 gap-8 text-left max-w-2xl mx-auto">
+                  <div className="flex items-center gap-4 bg-orange-50 p-4 rounded-2xl border border-orange-200">
+                    <Calendar className="text-red-700" size={32} />
+                    <div>
+                      <p className="text-xs uppercase tracking-widest text-orange-600 font-bold">তারিখ</p>
+                      <p className="text-lg font-bold text-gray-800">১৬ - ২১ অক্টোবর ২০২৬</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-4 bg-orange-50 p-4 rounded-2xl border border-orange-200">
+                    <MapPin className="text-red-700" size={32} />
+                    <div>
+                      <p className="text-xs uppercase tracking-widest text-orange-600 font-bold">স্থান</p>
+                      <p className="text-lg font-bold text-gray-800">সর্বজনীন পূজা মণ্ডপ</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-12 flex flex-wrap justify-center gap-4">
+                  <button 
+                    onClick={() => {
+                      setShowDetails(true);
+                      setTimeout(() => {
+                        document.getElementById('details-section').scrollIntoView({ behavior: 'smooth' });
+                      }, 100);
+                    }}
+                    className="bg-red-700 text-white px-8 py-3 rounded-full font-bold hover:bg-red-800 transition-all shadow-lg flex items-center gap-2 group"
+                  >
+                    বিস্তারিত দেখুন <ChevronDown className="group-hover:translate-y-1 transition-transform" />
+                  </button>
+                  <button 
+                    className="bg-white text-red-700 border-2 border-red-700 px-8 py-3 rounded-full font-bold hover:bg-red-50 transition-all shadow-md flex items-center gap-2"
+                  >
+                    RSVP করুন <Heart className="text-red-500" />
+                  </button>
+                </div>
+              </motion.div>
+            </header>
+
+            {showDetails && (
+              <motion.div 
+                id="details-section"
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="max-w-6xl mx-auto px-6 pb-24 space-y-20"
+              >
+                <CountdownTimer />
+
+                {/* Tabs for Navigation */}
+                <div className="flex justify-center border-b border-orange-200 sticky top-0 bg-[#fffaf5]/80 backdrop-blur-sm z-30 py-4">
+                  <div className="flex gap-2 md:gap-8 overflow-x-auto no-scrollbar">
+                    {[
+                      { id: 'invitation', label: 'আমন্ত্রণ', icon: Sparkles },
+                      { id: 'schedule', label: 'সময়সূচী', icon: Clock },
+                      { id: 'history', label: 'ইতিহাস', icon: Info },
+                    ].map((tab) => (
+                      <button
+                        key={tab.id}
+                        onClick={() => setActiveTab(tab.id)}
+                        className={`flex items-center gap-2 px-6 py-2 rounded-full font-bold transition-all whitespace-nowrap ${
+                          activeTab === tab.id 
+                            ? 'bg-red-700 text-white shadow-md' 
+                            : 'text-gray-500 hover:bg-orange-100'
+                        }`}
+                      >
+                        <tab.icon size={18} />
+                        {tab.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {activeTab === 'invitation' && (
+                  <div className="space-y-12 animate-fadeIn">
+                    {/* Special Timings */}
+                    <section className="bg-white p-8 md:p-12 rounded-[2.5rem] shadow-xl border-t-8 border-red-700 relative overflow-hidden">
+                      <div className="absolute top-0 right-0 p-8 text-8xl text-red-50 opacity-10 font-serif">ॐ</div>
+                      <h2 className="text-3xl md:text-4xl font-bold text-red-800 mb-10 text-center flex items-center justify-center gap-3">
+                        <Sparkles className="text-[#D4AF37]" /> বিশেষ পূজার লগ্ন
+                      </h2>
+                      <div className="grid md:grid-cols-3 gap-8">
+                        {specialTimings.map((timing, index) => (
+                          <div key={index} className="bg-orange-50 p-8 rounded-3xl border border-orange-100 hover:shadow-lg transition-all duration-300 relative group">
+                            <div className="text-5xl mb-6 flex justify-center group-hover:scale-110 transition-transform">{timing.icon}</div>
+                            <h3 className="text-2xl font-bold text-red-700 mb-3 text-center">{timing.title}</h3>
+                            <p className="text-lg font-bold text-orange-600 mb-4 text-center bg-white py-2 rounded-full shadow-sm">{timing.time}</p>
+                            <p className="text-gray-600 leading-relaxed text-justify">{timing.description}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </section>
+
+                    {/* Devotee Duties */}
+                    <section className="bg-red-800 text-white p-8 md:p-12 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
+                       <div className="absolute inset-0 opacity-10 bg-repeat pointer-events-none" style={{ backgroundImage: `url(${bgImage})`, backgroundSize: '200px' }} />
+                       <div className="relative z-10">
+                        <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center flex items-center justify-center gap-3">
+                          🙏 ভক্তদের করণীয় ও বিধি
+                        </h2>
+                        <div className="grid md:grid-cols-2 gap-8">
+                          {[
+                            { title: "পুষ্পাঞ্জলি প্রদান", desc: "পূজার অন্যতম প্রধান অঙ্গ হলো দেবীকে পুষ্পাঞ্জলি নিবেদন করা। বিশেষ করে মহাষ্টমীর দিন সকালে স্নান সেরে, শুদ্ধ বস্ত্রে (বা নতুন পোশাকে) দেবীর চরণে অঞ্জলি দেওয়া হয়।" },
+                            { title: "সাত্ত্বিক আহার", desc: "পূজার দিনগুলোতে (বিশেষ করে সপ্তমী, অষ্টমী ও নবমীতে) অনেক ভক্তই আমিষ খাবার বর্জন করে নিরামিষ বা সাত্ত্বিক আহার গ্রহণ করেন।" },
+                            { title: "সন্ধিপূজা দর্শন", desc: "অষ্টমীর ও নবমীর সন্ধিক্ষণে পবিত্র 'সন্ধিপূজা' দর্শন করা অত্যন্ত পুণ্যজনক বলে মনে করা হয়।" },
+                            { title: "সিঁদুর খেলা", desc: "বিজয়া দশমীর দিন দেবী প্রতিমা বিসর্জনের আগে বিবাহিত নারীরা দেবীকে সিঁদুর পরিয়ে মিষ্টি মুখ করান এবং একে অপরের সাথে সিঁদুর খেলায় মেতে ওঠেন।" }
+                          ].map((duty, idx) => (
+                            <div key={idx} className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 hover:bg-white/20 transition-colors">
+                              <h4 className="text-xl font-bold text-orange-300 mb-2">{duty.title}</h4>
+                              <p className="text-gray-100 leading-relaxed opacity-90">{duty.desc}</p>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="mt-12 text-center">
+                          <button 
+                            onClick={() => setShowDevoteeDuties(!showDevoteeDuties)}
+                            className="bg-[#D4AF37] text-red-900 px-8 py-3 rounded-full font-bold hover:scale-105 transition-all shadow-lg"
+                          >
+                            {showDevoteeDuties ? 'সংক্ষিপ্ত করুন' : 'সবগুলো নিয়ম দেখুন'}
+                          </button>
+                        </div>
+                       </div>
+                    </section>
+                  </div>
+                )}
+
+                {activeTab === 'schedule' && (
+                  <div className="animate-fadeIn">
+                    <PujaSchedule />
+                  </div>
+                )}
+
+                {activeTab === 'history' && (
+                  <div className="grid md:grid-cols-2 gap-8 animate-fadeIn">
+                    <section className="bg-white p-8 rounded-[2.5rem] shadow-lg border-l-8 border-orange-500">
+                      <h2 className="text-3xl font-bold text-red-700 mb-6">দুর্গাপূজার ইতিহাস</h2>
+                      <p className="text-lg leading-relaxed text-gray-700 text-justify">
+                        বাঙালি হিন্দু সমাজে দুর্গাপূজার প্রচলন ঠিক কবে শুরু হয়েছিল, তা নিয়ে নানা মতভেদ রয়েছে। তবে কৃত্তিবাস ওঝার রামায়ণে শ্রীরামচন্দ্র রাবণবধের উদ্দেশ্যে শরৎকালে দেবীর যে আরাধনা করেছিলেন, তা <strong>'অকালবোধন'</strong> নামে পরিচিত এবং এটিই শারদীয় দুর্গাপূজার মূল ভিত্তি।
+                      </p>
+                    </section>
+                    <section className="bg-white p-8 rounded-[2.5rem] shadow-lg border-l-8 border-red-500">
+                      <h2 className="text-3xl font-bold text-red-700 mb-6">পূজার মাহাত্ম্য</h2>
+                      <p className="text-lg leading-relaxed text-gray-700 text-justify">
+                        দুর্গাপূজা কেবল একটি ধর্মীয় আচার নয়, এটি অশুভ শক্তির বিনাশ এবং শুভ শক্তির বিজয়ের চিরন্তন প্রতীক। মহিষাসুরমর্দিনী দেবী দুর্গা হলেন মাতৃরূপ, শক্তিরূপ এবং শান্তিরূপ। তাঁর দশ হাতে দশ প্রহরণ প্রমাণ করে <strong>নারী শক্তির অসীম ক্ষমতা</strong>।
+                      </p>
+                    </section>
+                  </div>
+                )}
+
+                {/* Footer */}
+                <footer className="text-center py-12 border-t border-orange-100">
+                  <div className="font-script text-4xl text-red-700 mb-4">শুভ শারদীয়া</div>
+                  <p className="text-gray-500 italic">"মা আসছেন আমাদের ঘরে, আনন্দের জোয়ারে ভাসুক সারা দুনিয়া"</p>
+                </footer>
+              </motion.div>
+            )}
+          </motion.div>
         )}
+      </AnimatePresence>
 
-        {/* Schedule Section */}
-        <PujaSchedule />
-
-      </main>
+      {/* Decorative Floating Elements (only when open) */}
+      {isOpen && (
+        <div className="fixed inset-0 pointer-events-none z-20 overflow-hidden">
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              initial={{ y: -100, x: Math.random() * 100 + 'vw', rotate: 0 }}
+              animate={{ 
+                y: '110vh', 
+                rotate: 360,
+                x: (Math.random() * 100 - 50) + 'vw'
+              }}
+              transition={{ 
+                duration: Math.random() * 5 + 5, 
+                repeat: Infinity, 
+                ease: "linear",
+                delay: Math.random() * 5
+              }}
+              className="absolute text-3xl opacity-20"
+            >
+              {['🌸', '🌺', '✨', '🌼'][Math.floor(Math.random() * 4)]}
+            </motion.div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

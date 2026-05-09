@@ -67,8 +67,27 @@ const CountdownTimer = () => {
                     <TimeUnit value={timeLeft.seconds} label="সেকেন্ড" />
                 </div>
 
+                {/* Location and Short Timetable */}
+                <div className="mt-10 text-center text-white border-t border-white/20 pt-8 relative z-10">
+                    <div className="flex items-center justify-center gap-2 mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-yellow-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <span className="text-xl font-medium tracking-wide">স্থান: সর্বজনীন পূজা মণ্ডপ</span>
+                    </div>
+                    
+                    <div className="flex flex-wrap justify-center gap-3 text-sm md:text-base font-medium">
+                        <div className="bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full hover:bg-white/20 transition-colors">ষষ্ঠী: ১৬ অক্টো.</div>
+                        <div className="bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full hover:bg-white/20 transition-colors">সপ্তমী: ১৭ অক্টো.</div>
+                        <div className="bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full hover:bg-white/20 transition-colors">অষ্টমী: ১৮ অক্টো.</div>
+                        <div className="bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full hover:bg-white/20 transition-colors">নবমী: ১৯ অক্টো.</div>
+                        <div className="bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full hover:bg-white/20 transition-colors text-yellow-200">দশমী: ২০ অক্টো.</div>
+                    </div>
+                </div>
+
                 {/* Decorative Om or Puja Symbol icon can go here */}
-                <div className="absolute -bottom-6 -right-6 text-9xl text-white/10 select-none pointer-events-none font-serif">
+                <div className="absolute -bottom-6 -right-6 text-9xl text-white/10 select-none pointer-events-none font-serif z-0">
                     ॐ
                 </div>
             </div>
