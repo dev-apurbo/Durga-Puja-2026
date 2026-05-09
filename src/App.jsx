@@ -5,11 +5,13 @@ import CountdownTimer from './CountdownTimer';
 import PujaSchedule from './PujaSchedule';
 import bgImage from './assets/bg.png';
 import envelopeImage from './assets/envelope.png';
+import RSVPForm from './RSVPForm';
 
 const DurgaPuja2026 = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const [activeTab, setActiveTab] = useState('invitation');
+  const [showRSVP, setShowRSVP] = useState(false);
 
   const specialTimings = [
     {
@@ -140,6 +142,7 @@ const DurgaPuja2026 = () => {
                     বিস্তারিত দেখুন <ChevronDown className="group-hover:translate-y-1 transition-transform" />
                   </button>
                   <button 
+                    onClick={() => setShowRSVP(true)}
                     className="bg-white text-red-700 border-2 border-red-700 px-8 py-3 rounded-full font-bold hover:bg-red-50 transition-all shadow-md flex items-center gap-2"
                   >
                     RSVP করুন <Heart className="text-red-500" />
@@ -267,6 +270,8 @@ const DurgaPuja2026 = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {showRSVP && <RSVPForm onClose={() => setShowRSVP(false)} />}
 
       {/* Decorative Floating Elements (only when open) */}
       {isOpen && (
